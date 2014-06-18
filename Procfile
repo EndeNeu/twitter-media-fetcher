@@ -1,0 +1,2 @@
+web: target/universal/stage/bin/twitter_cat -Dhttp.port=$PORT
+twitter_cron: java -Dconfig.file=conf/application.conf -Dprocess.type=twitter_cron -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=$HEROKU_POSTGRESQL_MAUVE_URL -cp "target/universal/stage/lib/*" com.ebusiello.cats.Main .
