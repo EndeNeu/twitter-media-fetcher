@@ -1,1 +1,1 @@
-playScalaSettings
+play.Project.playScalaSettings

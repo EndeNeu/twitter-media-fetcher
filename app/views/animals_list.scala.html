@@ -1,0 +1,13 @@
+@(animals: List[com.ebusiello.cats.postgres.schema.twitter.TwitterSchema.TwitterCatsRow])
+
+        <div class="row menu">
+            <div class="col-xs-12 col-sm-9">
+            @animals.map { animal =>
+                <div class="col-6 col-sm-6 col-lg-4 animal-img item">
+                    <a href="@animal.imageUrl" target="_blank">
+                        <img src="@animal.imageUrl">
+                    </a>
+                </div>
+            }
+            </div>
+        </div>

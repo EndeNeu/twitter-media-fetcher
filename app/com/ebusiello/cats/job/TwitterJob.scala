@@ -1,17 +1,17 @@
-package com.ebusiello.cats
+package com.ebusiello.cats.job
 
 import java.io.File
 
 import com.ebusiello.cats.controller.TwitterController
-import play.api.{Play, Mode, DefaultApplication}
+import play.api.{DefaultApplication, Mode, Play}
 
-object  Main {
+object  TwitterJob {
 
   def main(args: Array[String]) {
     val application = new DefaultApplication(new File(args(0)), this.getClass.getClassLoader, null, Mode.Prod)
     Play.start(application)
     val controller = new TwitterController()
-    controller.execute()
+    controller.executeCron()
     Play.stop()
   }
 

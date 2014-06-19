@@ -1,0 +1,11 @@
+.col-lg-4 {
+    width: 33.33333333%;
+    float: left;
+}
+
+.animal-img {
+    height: auto;
+}
+
+.item { width: 25%; }
+.item.w2 { width: 50%; }

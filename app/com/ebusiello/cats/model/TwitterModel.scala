@@ -36,7 +36,7 @@ class TwitterModel extends PostgresGeneric[TwitterSchema.TwitterCats, TwitterSch
   def exists(status: Status)(implicit s: Session): Boolean = {
     (for {
       row <- tableReference
-      if row.tweet === status.getText || row.twitterId === status.getId
+      if row.tweet === status.getText || row.twitterId === status.getId || row.imageUrl === status.getMediaEntities.head.getMediaURL
     } yield row).firstOption.isDefined
   }
 
@@ -49,5 +49,9 @@ class TwitterModel extends PostgresGeneric[TwitterSchema.TwitterCats, TwitterSch
     tweet = status.getText,
     imageUrl = media.getMediaURL
   )
+
+  def getAnimalsN(n: Int, page: Int)(implicit s: Session): List[TwitterCats#TableElementType] = {
+    tableReference.sortBy(_.twitterId.desc.nullsLast).drop(page * n).take(n).list()
+  }
 
 }

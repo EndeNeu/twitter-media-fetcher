@@ -19,18 +19,24 @@ class TwitterController {
 
   val connector = new TwitterConnection()
 
-  def execute() = {
+  def executeCron() = {
     DB.withSession {
       implicit s: Session => {
         val connection: Twitter = connector.getConnection()
         val lastId = model.getLatestId()
-        println(lastId)
         val query = new TwitterQuery(connection)
         val results = query.getResults(lastId)
-        println(results.size())
         postgresChecker.check(results.size())
         val iterator: util.Iterator[Status] = results.iterator()
         model.insertAll(iterator)
+      }
+    }
+  }
+
+  def getAnimals(page: Int): List[TwitterCats#TableElementType] = {
+    DB.withSession {
+      implicit s: Session => {
+        model.getAnimalsN(99, page)
       }
     }
   }
