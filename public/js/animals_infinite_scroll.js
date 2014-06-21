@@ -8,7 +8,7 @@
 
     scrollListener: function() {
       $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height() - 2000) {
+        if($(window).scrollTop() + $(window).height() >= $(document).height() - 2500) {
           scroller.handler()
         }
       });
@@ -24,8 +24,7 @@
           url: "/" + scroller.page,
           dataType: 'text',
           success: function(data) {
-            $("#container").append(data)
-            console.log(data)
+            $("body").append(data)
             if(data) {
               scroller.page += 1;
               scroller.working = false;

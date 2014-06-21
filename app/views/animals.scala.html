@@ -1,7 +1,4 @@
 @(animals: List[com.ebusiello.cats.postgres.schema.twitter.TwitterSchema.TwitterCatsRow])
-    @main("Happy Animals!") {
-        <div id="container">
-            @views.html.animals_list(animals)
-        </div>
-
-    }
+@main("Happy Animals!") {
+    @views.html.animals_list(animals)
+}
