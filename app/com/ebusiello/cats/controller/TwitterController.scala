@@ -25,7 +25,7 @@ class TwitterController {
         val connection: Twitter = connector.getConnection()
         val lastId = model.getLatestId()
         val query = new TwitterQuery(connection)
-        val results = query.getResults(lastId)
+        val results: util.List[Status] = query.getResults(lastId)
         postgresChecker.check(results.size())
         val iterator: util.Iterator[Status] = results.iterator()
         model.insertAll(iterator)

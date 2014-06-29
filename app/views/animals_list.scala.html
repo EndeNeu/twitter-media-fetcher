@@ -1,9 +1,9 @@
 @(animals: List[com.ebusiello.cats.postgres.schema.twitter.TwitterSchema.TwitterCatsRow])
 
-<section class="photos">
 @animals.map { animal =>
-    <a href="@animal.imageUrl" target="_blank">
-        <img src="@animal.imageUrl">
-    </a>
+    <li>
+        <a href="@animal.imageUrl" target="_blank">
+            <img src="@animal.imageUrl">
+        </a>
+    </li>
 }
-</section>

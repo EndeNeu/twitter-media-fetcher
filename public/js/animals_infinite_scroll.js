@@ -15,7 +15,6 @@
     },
 
     handler: function() {
-      console.log(111)
       if(!scroller.working) {
         scroller.working = true;
         $.ajax({
@@ -24,7 +23,7 @@
           url: "/" + scroller.page,
           dataType: 'text',
           success: function(data) {
-            $("body").append(data)
+            $(".ul-container").append(data)
             if(data) {
               scroller.page += 1;
               scroller.working = false;

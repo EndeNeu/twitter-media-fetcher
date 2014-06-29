@@ -6,7 +6,7 @@ import scala.slick.driver.PostgresDriver.simple._
 
 class PostgresChecker {
 
-  val LIMIT = 10000
+  val LIMIT = 8000
 
   val model = new TwitterModel()
 
