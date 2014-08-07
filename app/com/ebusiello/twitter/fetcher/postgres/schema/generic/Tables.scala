@@ -1,6 +1,6 @@
-package com.ebusiello.cats.postgres.schema.generic
+package com.ebusiello.twitter.fetcher.postgres.schema.generic
 
-import com.ebusiello.cats.postgres.schema.twitter.TwitterSchema
+import com.ebusiello.twitter.fetcher.postgres.schema.twitter.TwitterSchema
 
 import scala.slick.driver.PostgresDriver.simple._
 import scala.slick.jdbc.{GetResult => GR}

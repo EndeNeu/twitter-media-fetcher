@@ -1,12 +1,16 @@
-package com.ebusiello.cats.job
+package com.ebusiello.twitter.fetcher
 
 import java.io.File
 
-import com.ebusiello.cats.controller.TwitterController
 import play.api.{DefaultApplication, Mode, Play}
 
 object  TwitterJob {
 
+  /**
+   * Cron job.
+   *
+   * @param args
+   */
   def main(args: Array[String]) {
     val application = new DefaultApplication(new File(args(0)), this.getClass.getClassLoader, null, Mode.Prod)
     Play.start(application)

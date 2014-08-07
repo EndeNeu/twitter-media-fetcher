@@ -1,6 +1,6 @@
-package com.ebusiello.cats.postgres.schema.twitter
+package com.ebusiello.twitter.fetcher.postgres.schema.twitter
 
-import com.ebusiello.cats.postgres.schema.generic.RichTable
+import com.ebusiello.twitter.fetcher.postgres.schema.generic.RichTable
 
 import scala.slick.driver.PostgresDriver.simple._
 import scala.slick.jdbc.{GetResult => GR}
@@ -12,19 +12,20 @@ object TwitterSchema {
     * @param id Database column id AutoInc, PrimaryKey
     * @param tweet Database column tweet
     * @param imageUrl Database column image_url  */
-  case class TwitterCatsRow(id: Long = 0, twitter_id: Long, tweet: Option[String], imageUrl: String)
+  case class TweetsRow(id: Long = 0, twitter_id: Long, tweet: Option[String], imageUrl: String)
 
   /** GetResult implicit for fetching TwitterCatsRow objects using plain SQL queries */
-  implicit def GetResultTwitterCatsRow(implicit e0: GR[Long], e1: GR[Option[String]], e2: GR[String]): GR[TwitterCatsRow] = GR{
+  implicit def GetResultTwitterCatsRow(implicit e0: GR[Long], e1: GR[Option[String]], e2: GR[String]): GR[TweetsRow] = GR {
     prs => import prs._
-      TwitterCatsRow.tupled((<<[Long], <<[Long], <<?[String], <<[String]))
+      TweetsRow.tupled((<<[Long], <<[Long], <<?[String], <<[String]))
   }
 
   /** Table description of table twitter_cats. Objects of this class serve as prototypes for rows in queries. */
-  class TwitterCats(tag: Tag) extends RichTable[TwitterCatsRow](tag, "twitter_cats") {
-    def * = (id, twitterId, tweet, imageUrl) <> (TwitterCatsRow.tupled, TwitterCatsRow.unapply)
+  class Tweets(tag: Tag) extends RichTable[TweetsRow](tag, "tweets") {
+    def * = (id, twitterId, tweet, imageUrl) <>(TweetsRow.tupled, TweetsRow.unapply)
+
     /** Maps whole row to an option. Useful for outer joins. */
-    def ? = (id.?, twitterId.?, tweet, imageUrl.?).shaped.<>({r=>import r._; _1.map(_=> TwitterCatsRow.tupled((_1.get, _2.get, _3, _4.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+    def ? = (id.?, twitterId.?, tweet, imageUrl.?).shaped.<>({ r => import r._; _1.map(_ => TweetsRow.tupled((_1.get, _2.get, _3, _4.get)))}, (_: Any) => throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column id AutoInc, PrimaryKey */
     override val id: Column[Long] = column[Long]("id", O.AutoInc, O.PrimaryKey)
@@ -37,6 +38,6 @@ object TwitterSchema {
   }
 
   /** Collection-like TableQuery object for table TwitterCats */
-  lazy val TwitterCats = new TableQuery(tag => new TwitterCats(tag))
+  lazy val TwitterCats = new TableQuery(tag => new Tweets(tag))
 
 }

@@ -4,7 +4,7 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appName = "twitter_cat"
+  val appName = "twitter_fetcher"
   val appVersion = "0.1"
 
   scalaVersion := "2.10.3"

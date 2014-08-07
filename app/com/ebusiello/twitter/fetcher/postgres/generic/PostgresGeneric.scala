@@ -1,6 +1,6 @@
-package com.ebusiello.cats.postgres.generic
+package com.ebusiello.twitter.fetcher.postgres.generic
 
-import com.ebusiello.cats.postgres.schema.generic.RichTable
+import com.ebusiello.twitter.fetcher.postgres.schema.generic.RichTable
 
 import scala.slick.driver.PostgresDriver.simple._
 
